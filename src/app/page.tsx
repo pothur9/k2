@@ -62,6 +62,39 @@ const statesInIndia = [
   "West Bengal",
 ];
 
+// Define the shape of your translation object
+interface Translation {
+  hero_title: string;
+  hero_text: string;
+  join_us: string;
+  form_title: string;
+  form_name: string;
+  form_name_placeholder: string;
+  form_dob: string;
+  form_gender: string;
+  select_gender: string;
+  male: string;
+  female: string;
+  other: string;
+  form_contact: string;
+  form_contact_placeholder: string;
+  add_photo: string;
+  file_size: string;
+  form_operator: string;
+  select_operator: string;
+  form_experience: string;
+  form_experience_placeholder: string;
+  form_company: string;
+  form_company_placeholder: string;
+  form_address: string;
+  form_address_placeholder: string;
+  form_state: string;
+  select_state: string;
+  submit: string;
+  pform_address: string; // Added for the second address
+  pform_address_placeholder: string; // Added for the second address
+  // Add other properties as needed
+}
 export default function Home() {
   const { language } = useContext(LanguageContext); // Access language from context
   const [t, setT] = useState({}); // To store translations for the current language
