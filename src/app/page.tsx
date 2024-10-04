@@ -61,7 +61,6 @@ const statesInIndia = [
   "Uttarakhand",
   "West Bengal",
 ];
-
 // Define the shape of your translation object
 interface Translation {
   hero_title: string;
@@ -93,16 +92,55 @@ interface Translation {
   submit: string;
   pform_address: string; // Added for the second address
   pform_address_placeholder: string; // Added for the second address
+  form_optype: string;
+}
+// Define the shape of your translation object
+interface Translation {
+  hero_title: string;
+  hero_text: string;
+  join_us: string;
+  form_title: string;
+  form_name: string;
+  form_name_placeholder: string;
+  form_dob: string;
+  form_gender: string;
+  select_gender: string;
+  male: string;
+  female: string;
+  other: string;
+  form_contact: string;
+  form_contact_placeholder: string;
+  add_photo: string;
+  file_size: string;
+  form_operator: string;
+  select_operator: string;
+  form_experience: string;
+  form_experience_placeholder: string;
+  form_company: string;
+  form_company_placeholder: string;
+  form_address: string;
+  form_address_placeholder: string;
+  form_state: string;
+  select_state: string;
+  submit: string;
+  pform_address: string; // Added for the second address
+  pform_address_placeholder: string; // Added for the second address
+  select_Load: string;
+  Light: string;
+  Medium: string;
+  Heavy: string;
+
   // Add other properties as needed
 }
 export default function Home() {
   const { language } = useContext(LanguageContext); // Access language from context
-  const [t, setT] = useState({}); // To store translations for the current language
+
   const [photo, setPhoto] = useState<File | null>(null); // To store the uploaded file
   const [photoError, setPhotoError] = useState<string | null>(null); // Error handling for file upload
   const [compressedSize, setCompressedSize] = useState<number | null>(null); // To store the compressed file size
   const [imagePreview, setImagePreview] = useState<string | null>(null); // To store the image preview
   const [operatorImage, setOperatorImage] = useState<string | null>(null);
+  const [t, setT] = useState<Translation | null>(null); // Define type for translations
 
   useEffect(() => {
     if (language) {
@@ -133,7 +171,7 @@ export default function Home() {
     if (file.type.startsWith("image")) {
       try {
         let compressedFile = file;
-        let compressionOptions = {
+        const compressionOptions = {
           maxSizeMB: 1, // Start with 1MB as initial compression
           useWebWorker: true,
         };
@@ -176,37 +214,49 @@ export default function Home() {
     <>
       <Navbar />
       <div className="hero bg-slate-100 min-h-screen w-full">
-  <div className="hero-content flex-col-reverse lg:flex-row-reverse w-full">
-    <img
-      src="hero-2.png"
-      className="max-w-full rounded-lg lg:max-w-xl"
-      alt="hero image"
-      style={{ width: "100%", height: "auto", maxWidth: "500px", maxHeight: "500px" }}
-    />
-    <div className="text-center lg:text-left mt-6 lg:mt-0">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold" style={{ color: "black" }}>
-        {t.hero_title}
-      </h1>
-      <p className="py-6 text-base sm:text-lg">{t.hero_text}</p>
-      <button className="btn btn-primary">{t.join_us}</button>
-    </div>
-  </div>
-</div>
+        <div className="hero-content flex-col-reverse lg:flex-row-reverse w-full">
+          <img
+            src="hero-2.png"
+            className="max-w-full rounded-lg lg:max-w-xl"
+            alt="hero image"
+            style={{
+              width: "100%",
+              height: "auto",
+              maxWidth: "500px",
+              maxHeight: "500px",
+            }}
+          />
+          <div className="text-center lg:text-left mt-6 lg:mt-0">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+              style={{ color: "black" }}
+            >
+              {t.hero_title}
+            </h1>
+            <p className="py-6 text-base sm:text-lg">{t.hero_text}</p>
+            <button className="btn btn-primary">{t.join_us}</button>
+          </div>
+        </div>
+      </div>
 
       {/* about company*/}
-      <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto my-8">
-  <h1 class="text-4xl font-semibold text-center text-primary mb-6">Our Vision</h1>
-  <p class="text-gray-600 leading-relaxed text-lg">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In odit eveniet ipsam debitis minus quo unde asperiores hic voluptates. Magnam at labore nobis neque, saepe fugiat a illum ullam libero. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, quia. Incidunt quisquam ex aspernatur, nesciunt fugiat eius officiis dolorum eos autem? Quidem facere nam eaque fugiat, dolores ullam non magnam!
-  </p>
-</div>
-
+      <div className="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto my-8">
+        <h1 className="text-4xl font-semibold text-center text-primary mb-6">
+          Our Vision
+        </h1>
+        <p className="text-gray-600 leading-relaxed text-lg">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. In odit
+          eveniet ipsam debitis minus quo unde asperiores hic voluptates. Magnam
+          at labore nobis neque, saepe fugiat a illum ullam libero. Lorem ipsum
+          dolor, sit amet consectetur adipisicing elit. Aliquam, quia. Incidunt
+          quisquam ex aspernatur, nesciunt fugiat eius officiis dolorum eos
+          autem? Quidem facere nam eaque fugiat, dolores ullam non magnam!
+        </p>
+      </div>
 
       {/* Driver Application Form */}
       <div className="max-w-lg mx-auto p-8 bg-base-100 shadow-md rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-6">
-          {t.form_title}
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-6">{t.form_title}</h2>
 
         {/* Name Field */}
         <div className="form-control mb-4">
@@ -255,8 +305,6 @@ export default function Home() {
           />
         </div>
 
-       
-
         {/* Add Photo (JPEG, PNG, PDF only) */}
         <div className="form-control mb-4">
           <label htmlFor="userphoto" className="label">
@@ -284,7 +332,6 @@ export default function Home() {
             </p>
           )}
         </div>
-
         {/* Operator Type */}
         <div className="form-control mb-4">
           <label className="label">
@@ -297,7 +344,8 @@ export default function Home() {
             <option value="">{t.select_operator}</option>
             {Object.keys(operatorImages).map((key) => (
               <option key={key} value={key}>
-                {t[key]}
+                {t[key as keyof Translation]}{" "}
+                {/* Cast key to keyof Translation */}
               </option>
             ))}
           </select>
@@ -312,7 +360,7 @@ export default function Home() {
           />
         )}
 
-           {/* Gender Field */}
+        {/* Gender Field */}
         <div className="form-control mb-4">
           <label className="label">
             <span className="label-text">{t.form_optype}</span>
@@ -399,4 +447,3 @@ export default function Home() {
     </>
   );
 }
-

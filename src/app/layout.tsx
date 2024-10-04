@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { LanguageProvider } from "../app/contexts/LanguageContext";
 import localFont from "next/font/local";
 import "./globals.css";
-import { LoadScript } from "@react-google-maps/api";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

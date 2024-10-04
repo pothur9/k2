@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../contexts/LanguageContext";
-import { useRouter } from "next/navigation";
-import logo from '../images/kk logo.png';
+
+
 
 function Navbar() {
   const { language, changeLanguage } = useContext(LanguageContext); // Using language from the context
-  const router = useRouter();
+
 
   return (
     <div className="navbar bg-base-100">
