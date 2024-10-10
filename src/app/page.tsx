@@ -214,9 +214,9 @@ export default function Home() {
     <>
       <Navbar />
       <div className="hero bg-slate-100 min-h-screen w-full">
-        <div className="hero-content flex-col-reverse lg:flex-row-reverse w-full">
+        <div className="hero-content flex-col lg:flex-row-reverse w-full">
           <img
-            src="hero-2.png"
+            src="hero3.png"
             className="max-w-full rounded-lg lg:max-w-xl"
             alt="hero image"
             style={{
